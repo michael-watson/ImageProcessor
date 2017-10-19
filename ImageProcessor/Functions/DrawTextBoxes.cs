@@ -13,7 +13,7 @@ namespace ImageProcessor.Functions
     [StorageAccount(EnvironmentVariables.AzureWebJobsStorage)]
     public static class DrawTextBoxes
     {
-        [FunctionName("DrawTextBoxes")]
+        [FunctionName(nameof(DrawTextBoxes))]
         public static void Run(
             [QueueTrigger("ocr-draw")]ImageMessage myQueueId, TraceWriter log,
             [DocumentDB("metadata", "analyzed-images", Id = "{Id}", CreateIfNotExists = false)] ProcessedImage originalEntry,
@@ -22,7 +22,7 @@ namespace ImageProcessor.Functions
         {
             if(myQueueId == null || originalEntry == null)
             {
-                log.Info("Nothing to process");
+                log.Info("Nothing to process: DrawTextBoxes");
                 output = null;
                 return;
             }
@@ -58,6 +58,8 @@ namespace ImageProcessor.Functions
                     }
                 }
             }
+
+            originalEntry.TextBoxImageUrl = $"https://image-processing-miwats.documents.azure.com:443/text-boxes/{myQueueId.Id}";
 
             ImageConverter converter = new ImageConverter();
             output = (byte[])converter.ConvertTo(imageWithRectangles, typeof(byte[]));
