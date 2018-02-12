@@ -1,14 +1,10 @@
 using System;
 
-using System.Threading;
-using System.Threading.Tasks;
-
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
-using System.IO;
 
 namespace ImageProcessor
 {
@@ -19,21 +15,26 @@ namespace ImageProcessor
 
         [FunctionName(nameof(MessageBuilder))]
         public static void Run(
-            [BlobTrigger("resize-images/{name}")] CloudBlockBlob inputBlob, string name, TraceWriter log,
-            [Queue("image-to-process")] out ImageMessage contentMessage,
-            [DocumentDB("metadata", "analyzed-images")] out ProcessedImage analyzedData)
+            [BlobTrigger(Routes.CogsImageBlob)] CloudBlockBlob inputBlob, string id, TraceWriter log,
+            [DocumentDB(Routes.Metadata, Routes.AnalyzedImages, Id = "{id}")] ProcessedImage analyzedData,
+            [Queue(Routes.GenericAnalysisQueue)] out ImageMessage genericAnalysisMessage,
+            [Queue(Routes.OcrAnalysisQueue)] out ImageMessage ocrAnalysisMessage,
+            [Queue(Routes.ThumbnailQueue)] out ImageMessage thumbnail)
         {
-            log.Info($"Image ready to process: {inputBlob.Uri.AbsoluteUri}");
-
-            var encodedName = Uri.EscapeDataString(name);
-
-            analyzedData = new ProcessedImage
+            if (analyzedData is null || string.IsNullOrEmpty(analyzedData.CogsReadyImageUrl))
             {
-                Id = name,
-                OriginalImageUrl = $"{inputBlob.Container.StorageUri.PrimaryUri.ToString()}/{encodedName}"
-            };
+                log.Info($"{id}: {nameof(ProcessedImage.CogsReadyImageUrl)} not populated");
+            }
 
-            contentMessage = new ImageMessage(analyzedData.Id);
+            log.Info($"{id}: Image ready to process - {inputBlob.Uri.AbsoluteUri}");
+
+            var encodedName = Uri.EscapeDataString(id);
+
+            analyzedData.CogsReadyImageUrl = $"{inputBlob.Container.StorageUri.PrimaryUri.ToString()}/{encodedName}";
+
+            genericAnalysisMessage = new ImageMessage(id) { Data = analyzedData.CogsReadyImageUrl };
+            ocrAnalysisMessage = new ImageMessage(id) { Data = analyzedData.CogsReadyImageUrl };
+            thumbnail = new ImageMessage(id) { Data = analyzedData.CogsReadyImageUrl };
         }
     }
 }
