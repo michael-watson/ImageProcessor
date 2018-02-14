@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "549795080160",
+    "firebase_url": "https://image-analyzer-miwats.firebaseio.com",
+    "project_id": "image-analyzer-miwats",
+    "storage_bucket": "image-analyzer-miwats.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549795080160:android:3133520c95982702",
+        "android_client_info": {
+          "package_name": "com.michaelwaston.imageprocessor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "549795080160-2n64cnp09vam0tr6vml403qoofppmbk2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.michaelwaston.imageprocessor",
+            "certificate_hash": "7a1ca5d6cb69dfdd900e036f98c43aa1047d6345"
+          }
+        },
+        {
+          "client_id": "549795080160-ngk8f06b6n9f6dlpagbb6jjlu0mfknse.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsh2iO_q3XD-TmCf6qyFLCUZwDzDcnBaA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "549795080160-ngk8f06b6n9f6dlpagbb6jjlu0mfknse.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
