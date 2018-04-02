@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+     xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+     x:Class="ImageProcessor.Mobile.Forms.Views.ImageDetailsPage">
+    <ContentPage.Content>
+        <Grid Padding="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <cv:CarouselViewControl x:Name="imageCarousel" 
+                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Position="{Binding CurrentIndex}"
+                ShowIndicators="true"
+                IndicatorsTintColor="Gray"                    
+                BindingContext="{Binding ImageData}"/>
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                Text="{Binding Name}"/>
+            <Frame Grid.Row="0" Grid.Column="1"
+                   HorizontalOptions="End"
+                   VerticalOptions="Start"
+                   HeightRequest="50"
+                   Padding="10"
+                   BackgroundColor="Blue"
+                   HasShadow="false"
+                   CornerRadius="5"
+                   OutlineColor="White">
+                <Frame.Content>
+                    <Label Text="{Binding Display}"
+                           TextColor="White"/>
+                </Frame.Content>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

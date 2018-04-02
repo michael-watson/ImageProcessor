@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    x:Class="ImageProcessor.Mobile.Forms.Views.ImagesListPage"
+    Title="Images in CosmosDB">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Clicked="UploadPhoto"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding Images}"
+            IsRefreshing="{Binding IsBusy}"
+            ItemSelected="Handle_ItemSelected"
+            IsPullToRefreshEnabled="true"
+                  Refreshing="Handle_Refreshing"
+            RowHeight="100">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <ffimageloading:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
+                                WidthRequest="100" HeightRequest="100"
+                                DownsampleToViewSize="true"
+                                Source = "{Binding ThumbnailUrl}">
+                            </ffimageloading:CachedImage>
+                            <Label Text="{Binding id}"
+                                HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

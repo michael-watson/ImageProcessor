@@ -11,7 +11,8 @@ namespace ImageAnalysisBlock
         None = 0,
         GenericAnalysis = 1,
         OcrAnalysis = 2,
-        Thumbnail = 3
+        Thumbnail = 3,
+        ProcessingComplete = 10
     }
 
     [JsonObject]

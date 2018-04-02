@@ -9,22 +9,22 @@ namespace ImageAnalysisBlock
 
         public const string Json = "application/json";
 
-        public const string BaseBlobUriRoute = "https://ImageAnalysisBlockmiwats.blob.core.windows.net/";
+        public const string BaseBlobUriRoute = "https://imageprocessormiwats.blob.core.windows.net/";
 
         public const string OriginalImageBlob = "original-images/{id}";
         public const string CogsImageBlob = "images-for-cogs/{id}";
         public const string OcrDrawImageBlob = "ocr-draw/{id}";
         public const string ThumbnailBlob = "thumbnails/{id}";
 
-
+        public const string AnalyzeNotification = "analyze-notification";
         public const string GenericAnalysisQueue = "generic-analysis";
         public const string OcrAnalysisQueue = "ocr-analysis";
         public const string OcrDrawTextQueue = "ocr-draw";
         public const string HandwrittenAnalysisQueue = "handwritten-analysis";
         public const string CelebLandmarkAnalysisQueue = "celeb-landmark-analysis";
-        public const string ThumbnailQueue = "thumbnail";
+        public const string ThumbnailQueue = "thumbnails";
         public const string DataSaveQueue = "data-save";
-
+        public const string ImageProcessed = "image-processed";
 
         public const string Metadata = "metadata";
         public const string AnalyzedImages = "analyzed-images";

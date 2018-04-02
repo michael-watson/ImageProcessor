@@ -31,6 +31,7 @@ namespace ImageAnalysisBlock.Functions
             try
             {
                 Image img = Image.FromStream(resizedImage);
+                img.ExifRotate();
                 var ocrData = JsonConvert.DeserializeObject<OcrResults>(myQueueId.Data);
 
                 output = ImageService.DrawBoxesOnImageText(img, ocrData);

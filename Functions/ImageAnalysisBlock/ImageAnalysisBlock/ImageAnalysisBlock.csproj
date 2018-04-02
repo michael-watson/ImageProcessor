@@ -3,7 +3,9 @@
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="ImageProcessor" Version="2.6.0" />
     <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="1.8.1" />
+    <PackageReference Include="Microsoft.Azure.NotificationHubs" Version="1.0.9" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.DocumentDB" Version="1.1.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.8" />
     <PackageReference Include="Microsoft.ProjectOxford.Vision" Version="1.0.393" />

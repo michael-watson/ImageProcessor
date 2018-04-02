@@ -17,6 +17,12 @@ namespace ImageAnalysisBlock.Functions
         {
             dynamic data = null;
 
+            if(analyzedData is null)
+            {
+                log.Error($"{nameof(DataSaver)} Type-{myQueueId.Type} : Data was null");
+                return;
+            }
+
             try
             {
                 switch (myQueueId.Type)
